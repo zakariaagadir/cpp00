@@ -5,18 +5,18 @@
 #include <string>
 
 class PhoneBook {
-private:
-    Contact contacts[8];
-    int     contactCount;
-    int     nextIndex;
+	private:
+		Contact contacts[8];
+		int     contactCount;
+		int     nextIndex;
 
-public:
-    PhoneBook();
+	public:
+		PhoneBook();
 
-    void addContact(const Contact& newContact);
-    void displayContacts() const;
-    void displayContactDetails(int index) const;
-    bool isValidIndex(int index) const;
+		void addContact(const Contact& newContact);
+		void displayContacts() const;
+		void displayContactDetails(int index) const;
+		bool isValidIndex(int index) const;
 };
 
 #endif // PHONEBOOK_HPP
