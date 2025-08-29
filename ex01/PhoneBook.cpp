@@ -1,13 +1,18 @@
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <iomanip>
 
-PhoneBook::PhoneBook() : count(0), index(0) {}
+PhoneBook::PhoneBook() : contactCount(0), nextIndex(0) {}
+
+int PhoneBook::getcontactCount() const {
+    return contactCount;
+}
 
 void PhoneBook::addContact(const Contact& newContact) {
-    contacts[index] = newContact;
-    index = (index + 1) % 8;
-    if (count < 8)
-        count++;
+    contacts[nextIndex] = newContact;
+    nextIndex = (nextIndex + 1) % 8;
+    if (contactCount < 8)
+        contactCount++;
 }
 
 void PhoneBook::displayContacts() const {
@@ -16,18 +21,18 @@ void PhoneBook::displayContacts() const {
               << std::setw(10) << "Last Name" << "|"
               << std::setw(10) << "Nickname" << std::endl;
 
-    for (int i = 0; i < count; ++i) {
+    for (int i = 0; i < contactCount; ++i) {
         contacts[i].displaySummary(i);
     }
 }
 
 void PhoneBook::displayContactDetails(int i) const {
-    if (i < 0 || i >= count)
+    if (!isValidIndex(i))
         std::cout << "Invalid index." << std::endl;
     else
         contacts[i].displayDetails();
 }
 
-int PhoneBook::getCount() const {
-    return count;
+bool PhoneBook::isValidIndex(int index) const {
+    return (index >= 0 && index < contactCount);
 }

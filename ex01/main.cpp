@@ -11,6 +11,7 @@ std::string prompt(const std::string& msg) {
     return input;
 }
 
+
 int main() {
     PhoneBook phonebook;
     std::string command;
@@ -18,8 +19,8 @@ int main() {
     while (true) {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
         std::getline(std::cin, command);
-        if (std::cin.eof()) break;
-
+        if (std::cin.eof())
+            break;
         if (command == "ADD") {
             Contact c;
             std::string first = prompt("First Name: ");
@@ -33,12 +34,12 @@ int main() {
                 continue;
             }
 
-            c.setField(first, last, nick, phone, secret);
+            c.setContact(first, last, nick, phone, secret);
             phonebook.addContact(c);
             std::cout << "Contact added!" << std::endl;
 
         } else if (command == "SEARCH") {
-            if (phonebook.getCount() == 0) {
+            if (phonebook.getcontactCount() == 0) {
                 std::cout << "Phonebook is empty!" << std::endl;
                 continue;
             }
@@ -63,6 +64,5 @@ int main() {
         }
     }
 
-    std::cout << "Goodbye!" << std::endl;
     return 0;
 }
